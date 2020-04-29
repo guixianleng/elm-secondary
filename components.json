@@ -1,0 +1,7 @@
+{
+  "ElmCascader": "./packages/ElmCascader/index.js",
+  "ElmForm": "./packages/ElmForm/index.js",
+  "elmPagination": "./packages/ElmPagination/index.js",
+  "ElmTable": "./packages/ElmTable/index.js",
+  "ElmTreeSelect": "./packages/ElmTreeSelect/index.js"
+}

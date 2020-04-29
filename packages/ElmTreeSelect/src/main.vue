@@ -3,7 +3,7 @@
  * @Description: 下拉树状选择
  * @Date: 2020-03-16 16:27:24
  * @LastEditors: LenGxin
- * @LastEditTime: 2020-04-29 11:20:23
+ * @LastEditTime: 2020-04-29 14:19:57
 -->
 <template>
   <el-select
@@ -100,7 +100,6 @@ export default class ElmTreeSelect extends Vue {
 
   // 复选框点击
   handleNodeChecked (node: any, keys: any) {
-    console.log(node, keys, '勾选 ')
     this.$emit('input', keys.checkedKeys.join(','))
     let labelArr: Array<any> = []
     keys.checkedNodes.forEach((item: any) => {

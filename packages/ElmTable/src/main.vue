@@ -3,7 +3,7 @@
  * @Description: Do not edit
  * @Date: 2020-03-10 11:01:40
  * @LastEditors: LenGxin
- * @LastEditTime: 2020-04-29 11:22:45
+ * @LastEditTime: 2020-04-29 15:23:57
 -->
 <template>
   <div>
@@ -13,11 +13,11 @@
       v-bind="$attrs"
       v-on="$listeners"
     >
-      <table-column v-bind="$attrs"
+      <table-item v-bind="$attrs"
         v-for="(item, index) in columns"
         :key="index"
         :column="item">
-      </table-column>
+      </table-item>
     </el-table>
     <elm-pagination
       :total="total"
@@ -31,11 +31,11 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import TableColumn from './TableColumn.vue'
+import TableItem from './TableItem.vue'
 
 @Component({
   components: {
-    TableColumn
+    TableItem
   }
 })
 
