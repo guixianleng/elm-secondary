@@ -88,7 +88,7 @@
         v-model="data[item.value]"
         v-bind="item.el"
         :placeholder="getPlaceholder(item)"
-        :options="listTypeInfo[item.list]"
+        :options="item.list === 'area' ? _initAddressData(item.el.grade || 3) : listTypeInfo[item.list]"
         @change="handleEvent(item.event, data[item.value])"
       ></el-cascader>
       <div v-if="item.type === 'button'">
@@ -107,13 +107,9 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-import ElmTreeSelect from '../../ElmTreeSelect/src/main.vue'
+import area from '../../ELmCascader/src/area.json'
 
-@Component({
-  components: {
-    ElmTreeSelect
-  }
-})
+@Component({})
 export default class ElmForm extends Vue {
   // 自定义类名
   @Prop({}) className!: string
@@ -129,6 +125,8 @@ export default class ElmForm extends Vue {
   @Prop({ default: '120px' }) labelWidth!: any
   // 相关select列表
   @Prop({}) listTypeInfo!: any
+  // 省市区json数据
+  private areaObjJSON: any = area
   // 选择类型
   private types = ['select', 'date', 'cascader', 'time', 'area']
 
@@ -171,6 +169,42 @@ export default class ElmForm extends Vue {
     this.$emit('update:refObj', this.$refs.form)
   }
   
+  // 初始化地区显示数据
+  private _initAddressData (grade: number) {
+    let result: Array<any> = []
+    const AREA_JSON = this.areaObjJSON
+    AREA_JSON.forEach((provice: any) => {
+      let cityArr: any = []
+      if (provice.id && grade > 1) {
+        provice.children.forEach((city: any) => {
+          let area: Array<any> = []
+          if (city.children && city.children.length > 0 && grade > 2) {
+            city.children.forEach((country: any) => {
+              area.push({
+                value: country.id,
+                label: country.name
+              })
+            })
+          }
+          let cityObject: any = {
+            value: city.id,
+            label: city.name
+          }
+          if (grade > 2 && area.length) {
+            cityObject.children = area
+          }
+          cityArr.push(cityObject)
+        })
+      }
+      result.push({
+        value: provice.id,
+        label: provice.name,
+        children: grade > 1 ? cityArr : null
+      })
+    })
+    return result
+  }
+
   // 获取字段列表
   private getConfigList() {
     return this.fieldList.filter(
