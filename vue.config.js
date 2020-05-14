@@ -1,9 +1,7 @@
 const path = require('path')
-const resolve = dir => {
-  return path.join(__dirname, dir)
-}
 
 module.exports = {
+  // 修改 pages 入口
   pages: {
     index: {
       entry: 'examples/main.ts',
@@ -11,63 +9,37 @@ module.exports = {
       filename: 'index.html'
     }
   },
+  //解决打包时,报错问题  https://github.com/QingWei-Li/vue-markdown-loader/issues/61
+  parallel: false,
+  // 扩展 webpack 配置
   chainWebpack: config => {
-    //  packages 加入编译
+    // @ 默认指向 src 目录，这里要改成 examples
+    config.resolve.alias
+      .set('@', path.resolve('examples'))
+      .set('~', path.resolve('packages'))
+      .set('src', path.resolve('src'))
+    // 把 packages 和 examples 加入编译，因为新增的文件默认是不被 webpack 处理的
     config.module
       .rule('js')
-      .include
-      .add(resolve('packages'))
+      .include.add(/packages/)
+      .end()
+      .include.add(/examples/)
       .end()
       .use('babel')
       .loader('babel-loader')
       .tap(options => {
+        // 修改它的选项...
         return options
       })
-    // markdown文件处理
-    const mdRule = config.module.rule('md')
-    mdRule
-      .test(/\.md$/)
+    //markdown
+    config.module
+      .rule('md')
+      .test(/\.md/)
       .use('vue-loader')
       .loader('vue-loader')
       .end()
       .use('vue-markdown-loader')
       .loader('vue-markdown-loader/lib/markdown-compiler')
-      .options({
-        raw: true,
-        preventExtract: true,
-        use: [
-          [
-            require("markdown-it-container"),
-            "demo",
-            {
-              validate: function(params) {
-                return params.trim().match(/^demo\s+(.*)$/)
-              },
-              render(tokens, index) {
-                let { nesting, info } = tokens[index]
-                if (nesting === 1) {
-                  // 1.获取代码块的描述内容
-                  let content = info.trim().match(/^demo\s+(.*)$/) || []
-                  let description = content.length > 1 ? content[1] : ""
-                  var md = require("markdown-it")()
-                  if (description) {
-                    description = md.render(description)
-                  }
-                  // 2.获取代码块内的 html 和 js代码
-                  content = tokens[index + 1].content
-                  // 3.代码块包裹
-                  return  `<code-demo>
-                    <div class="source" slot="source">${content}</div>
-                    ${descriptionHTML}
-                    <div class="highlight" slot="highlight">
-                  `
-                } else {
-                  return `</div></code-demo>\n`
-                }
-              }
-            }
-          ]
-        ]
-      })
+      .loader(path.resolve(__dirname, './md-loader/index.js'))//element-ui的md处理在md-loader中,这里没有使用.处理方式在下面
   }
 }

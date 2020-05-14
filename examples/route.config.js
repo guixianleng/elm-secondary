@@ -1,19 +1,34 @@
-import navConfig from './nav.config'
+import Vue from 'vue'
+import Router from 'vue-router'
 
-let route = []
-const registerRoute = (navConfig) => {
-  navConfig.forEach((item) => {
-    if (item.path) {
+import navConfig from './nav.config.json'
+
+Vue.use(Router)
+const docsRouter = navConfig => {
+  let route = []
+  navConfig[0].groups.forEach(group => {
+    group.list.forEach(nav => {
       route.push({
-        path: item.path,
-        component: resolve => require([`./mds${item.path === '/' ? '/index' : item.path}.md`], resolve)
+        path: nav.path,
+        name: nav.path,
+        component: r =>
+          require.ensure([], () => r(require(`@/docs${nav.path}.md`)))
       })
-    }
-    if (item.children && item.children.forEach) {
-      registerRoute(item.children)
-    }
+    })
   })
+  return route
 }
-registerRoute(navConfig)
-
-export default route
+let docsRoute = docsRouter(navConfig)
+docsRoute = docsRoute.concat([
+  {
+    path: '/',
+    redirect: '/index',
+    name: 'index',
+    component: r => require.ensure([], () => r(require(`@/docs/index.md`)))
+  }
+])
+export default new Router({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes: docsRoute
+})

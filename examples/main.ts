@@ -1,21 +1,25 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Router from 'vue-router'
-import routes from './route.config.js'
+import router from './route.config.js'
 import * as ElementUI from '../src/@element-ui.js'
 import ElmUI from '../src/index.js'
 import 'element-ui/lib/theme-chalk/index.css'
-import 'highlight.js/styles/atom-one-dark.css'
-import CodeDemo from './components/CodeDemo.vue'
+import hljs from "highlight.js"
+import demoBlock from './components/demoBlock.vue'
 
 Vue.config.productionTip = false
-Vue.component('code-demo', CodeDemo)
+Vue.component('demoBlock', demoBlock)
 
-Vue.use(Router).use(ElementUI).use(ElmUI)
+Vue.use(ElementUI).use(ElmUI)
+
+router.afterEach((route: any) => {
+  Vue.nextTick(() => {
+    const blocks = document.querySelectorAll("pre code:not(.hljs)")
+    Array.prototype.forEach.call(blocks, hljs.highlightBlock)
+  })
+})
 
 new Vue({
-  router: new Router({
-    routes: routes
-  }),
+  router,
   render: (h) => h(App),
 }).$mount('#app')
