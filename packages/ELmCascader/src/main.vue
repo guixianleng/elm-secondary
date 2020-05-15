@@ -4,6 +4,7 @@
     v-bind="$attrs"
     v-on="$listeners"
     :options="_initAddressData(grade)"
+    @change="handleCascaderChange"
   ></el-cascader>
 </template>
 
@@ -55,6 +56,10 @@ export default class ElmCascader extends Vue {
       })
     })
     return result
+  }
+
+  private handleCascaderChange (val: any) {
+    console.log(val)
   }
 }
 </script>

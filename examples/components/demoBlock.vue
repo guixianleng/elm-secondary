@@ -151,6 +151,8 @@ export default {
       border: none;
       max-height: none;
       border-radius: 0;
+      background-color: #f5f5f5;
+      padding: 10px;
       &::before {
         content: none;
       }
@@ -171,7 +173,7 @@ export default {
     &.is-fixed {
       position: fixed;
       bottom: 0;
-      width: 868px;
+      width: 978px;
     }
     i {
       font-size: 16px;
@@ -209,13 +211,13 @@ export default {
     }
   }
 }
+
 //doc 的 table 样式
 .element-doc table {
   border-collapse: collapse;
   width: 100%;
   background-color: #fff;
   font-size: 14px;
-  margin-bottom: 45px;
   line-height: 1.5em;
   strong {
     font-weight: normal;
@@ -223,7 +225,7 @@ export default {
   td,
   th {
     border-bottom: 1px solid #dcdfe6;
-    padding: 15px;
+    padding: 15px 0;
     max-width: 250px;
   }
   th {
@@ -234,10 +236,6 @@ export default {
   }
   td {
     color: #606266;
-  }
-  th:first-child,
-  td:first-child {
-    padding-left: 10px;
   }
 }
 </style>

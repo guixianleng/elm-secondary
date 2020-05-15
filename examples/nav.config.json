@@ -3,20 +3,11 @@
     "name": "组件",
     "groups": [
       {
-        "groupName": "index",
+        "groupName": "组件库",
         "list": [
           {
             "path": "/index",
             "title": "组件"
-          }
-        ]
-      },
-      {
-        "groupName": "Basic",
-        "list": [
-          {
-            "path": "/button",
-            "title": "Button 按钮"
           }
         ]
       },
@@ -39,10 +30,6 @@
           {
             "path": "/table",
             "title": "Table 表格"
-          },
-          {
-            "path": "/tree",
-            "title": "Tree 树形控件"
           },
           {
             "path": "/pagination",

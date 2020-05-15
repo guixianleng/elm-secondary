@@ -1,10 +1,3 @@
-<!--
- * @Author: LenGxin
- * @Description: Do not edit
- * @Date: 2020-03-10 11:01:40
- * @LastEditors: LenGxin
- * @LastEditTime: 2020-04-29 15:23:57
--->
 <template>
   <div>
     <el-table
@@ -22,8 +15,9 @@
     <elm-pagination
       :total="total"
       :query="query"
-      :hidden="paginationHide"
+      :hidden="hiddenPage"
       @pagination="getListData"
+      style="padding-top: 25px"
       :defaultQuery="queryParams"
     />
   </div>
@@ -34,6 +28,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import TableItem from './TableItem.vue'
 
 @Component({
+  name: 'ElmTable',
   components: {
     TableItem
   }
@@ -65,8 +60,8 @@ export default class ElmTable extends Vue {
     return this.listQuery
   }
   // 显示分页
-  get paginationHide () {
-    return this.showPagination || this.total > 0
+  get hiddenPage () {
+    return !this.showPagination || this.total === 0
   }
 
   mounted () {

@@ -1,10 +1,3 @@
-<!--
- * @Author: LenGxin
- * @Description: Do not edit
- * @Date: 2020-03-03 17:11:52
- * @LastEditors: LenGxin
- * @LastEditTime: 2020-04-29 11:10:40
--->
 <template>
   <div :class="{ hidden: hidden }" class="elm-pagination">
     <el-pagination
@@ -27,12 +20,21 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 @Component({})
 export default class ElmPagination extends Vue {
   @Prop({ required: true }) private total!: number
-  @Prop({ default: () => {} }) private query!: any
-  @Prop({ default: () => [10, 20, 30, 50] }) private pageSizes!: number[]
+  @Prop({ default: () => ({
+      pageNum: 1,
+      pageSize: 10
+    })
+  })
+  private query!: any
+  @Prop({ default: () => [10, 20, 30, 50] })
+  private pageSizes!: number[]
   @Prop({ default: 'total, sizes, prev, pager, next, jumper' })
   private layout!: string
-  @Prop({ default: true }) private background!: boolean
-  @Prop({ default: false }) private hidden!: boolean
+  @Prop({ default: true })
+  private background!: boolean
+  @Prop({ default: false })
+  private hidden!: boolean
+
   // 自定义分页字段
   @Prop({
     default: () => ({
@@ -81,7 +83,7 @@ export default class ElmPagination extends Vue {
 <style lang="scss" scoped>
 .elm-pagination {
   background: #fff;
-  padding: 32px 16px;
+  height: 35px;
   text-align: right;
   &.hidden {
     display: none;

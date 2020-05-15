@@ -1,33 +1,8 @@
-## Input 输入框
+## Cascader 省市区级联选择
 
-通过鼠标或键盘输入字符
-
-:::warning
-Input 为受控组件，它**总会显示 Vue 绑定值**。
-
-通常情况下，应当处理 `input` 事件，并更新组件的绑定值（或使用`v-model`）。否则，输入框内显示的值将不会改变。
-
-不支持 `v-model` 修饰符。
-:::
+当一个数据集合有清晰的层级结构时，可通过级联选择器逐级查看并选择
 
 ### 基础用法
-
-:::demo
-```html
-<el-input v-model="input" placeholder="请输入内容"></el-input>
-
-<script>
-export default {
-  data() {
-    return {
-      input: ''
-    }
-  }
-}
-</script>
-```
-:::
-
 :::demo
 ```html
 <elm-cascader v-model="area"></elm-cascader>
@@ -43,3 +18,44 @@ export default {
 </script>
 ```
 :::
+
+### 显示省市
+:::demo
+```html
+<elm-cascader v-model="proCity" :grade="2"></elm-cascader>
+
+<script>
+export default {
+  data () {
+    return {
+      proCity: ''
+    }
+  }
+}
+</script>
+```
+:::
+
+### 仅显示最后一级
+:::demo
+```html
+<elm-cascader v-model="last" :show-all-levels="false"></elm-cascader>
+
+<script>
+export default {
+  data () {
+    return {
+      last: ''
+    }
+  }
+}
+</script>
+```
+:::
+
+### Attributes
+原生属性和props都支持，以下为扩展属性
+
+| 参数      | 说明    | 类型      | 可选值       | 默认值   |
+|---------- |-------- |---------- |-------------  |-------- |
+| grade     | 显示级数   | number  |     —        |    3     |
