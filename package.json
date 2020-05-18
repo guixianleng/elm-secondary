@@ -16,7 +16,6 @@
     "build-bundle": "vue-cli-service build --target lib --name elm-ui ./src/index.js"
   },
   "dependencies": {
-    "core-js": "^3.6.4",
     "element-ui": "^2.13.1",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
@@ -24,6 +23,7 @@
     "vue-router": "^3.1.6"
   },
   "devDependencies": {
+    "core-js": "^3.6.4",
     "@types/jest": "^24.0.19",
     "@vue/cli-plugin-babel": "~4.3.0",
     "@vue/cli-plugin-typescript": "~4.3.0",
