@@ -108,7 +108,9 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 
-@Component({})
+@Component({
+  name: 'ElmForm'
+})
 export default class ElmForm extends Vue {
   // 自定义类名
   @Prop({}) className!: string

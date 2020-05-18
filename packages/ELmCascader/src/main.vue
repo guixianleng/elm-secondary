@@ -12,7 +12,9 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import area from './area.json'
 
-@Component({})
+@Component({
+  name: 'ElmCascader'
+})
 export default class ElmCascader extends Vue {
   // 选择显示几级
   @Prop({ default: 3 }) private grade!: number

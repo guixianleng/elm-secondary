@@ -3,7 +3,7 @@
  * @Description: 下拉树状选择
  * @Date: 2020-03-16 16:27:24
  * @LastEditors: LenGxin
- * @LastEditTime: 2020-04-29 14:19:57
+ * @LastEditTime: 2020-05-18 10:06:17
 -->
 <template>
   <el-select
@@ -37,7 +37,9 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 
-@Component({})
+@Component({
+  name: 'ElmTreeSelect'
+})
 export default class ElmTreeSelect extends Vue {
   // 配置选项
   @Prop({ default: () => ({

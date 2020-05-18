@@ -17,7 +17,9 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-@Component({})
+@Component({
+  name: 'ElmPagination'
+})
 export default class ElmPagination extends Vue {
   @Prop({ required: true }) private total!: number
   @Prop({ default: () => ({
