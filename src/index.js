@@ -3,7 +3,7 @@
  * @Description: 注册组件，按需加载
  * @Date: 2020-04-29 10:11:02
  * @LastEditors: LenGxin
- * @LastEditTime: 2020-04-29 11:29:09
+ * @LastEditTime: 2020-05-18 10:15:36
  */
 import ElmCascader from '../packages/ELmCascader/index.js'
 import ElmForm from '../packages/ElmForm/index.js'
@@ -21,7 +21,7 @@ const components = [
 
 const install = function(Vue) {
   components.forEach(component => {
-    Vue.component(component.name, component)
+    Vue.component(component.options.name, component)
   })
 }
 
