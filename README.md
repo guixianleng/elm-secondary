@@ -28,7 +28,8 @@ new Vue({
 ```
 
 ### 组件库踩坑
-1. 封装组件的时候因为使用了ts进行封装的，组件一定要带上`name`
+封装组件的时候因为使用了ts进行封装的，组件一定要带上`name`
+
 栗子：
 ```js
 ...
@@ -45,14 +46,15 @@ ElmPagination.install = function(Vue) {
 ```
 全局按需加载注册组件也需要`options.name`
 ```js
+...
 const install = function(Vue) {
   components.forEach(component => {
     Vue.component(component.options.name, component)
   })
 }
-``
+```
 
-## 本地预览
+### 本地预览
 ```
 yarn install
 ```
