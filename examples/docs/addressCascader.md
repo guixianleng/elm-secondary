@@ -5,13 +5,18 @@
 ### 基础用法
 :::demo
 ```html
-<elm-address-cascader v-model="area"></elm-address-cascader>
+<elm-address-cascader v-model="area" @change="handleCas"></elm-address-cascader>
 
 <script>
 export default {
   data () {
     return {
-      area: ''
+      area: ["110000", "110100", "110102"]
+    }
+  },
+  methods: {
+    handleCas (val) {
+      console.log(val)
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <el-cascader
-    v-model="value"
+    v-model="modelVal"
     v-bind="$attrs"
     v-on="$listeners"
     :options="_initAddressData(grade)"
@@ -12,16 +12,17 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import area from './area.json'
 
 @Component({
-  name: 'elmAddressCascader'
+  name: 'ElmAddressCascader'
 })
 export default class ElmAddressCascader extends Vue {
   // 选择显示几级
   @Prop({ default: 3 }) private grade!: number
+  @Prop({}) private value!: any
 
   // 省市区json数据
   private areaObjJSON: any = area
-  // value值
-  private value: any = ''
+  // v-model值
+  private modelVal: any = this.value
 
   // 初始化地区显示数据
   private _initAddressData (grade: number) {
