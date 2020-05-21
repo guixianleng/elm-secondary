@@ -15,8 +15,8 @@
         "groupName": "Form",
         "list": [
           {
-            "path": "/cascader",
-            "title": "Cascader 级联选择器"
+            "path": "/addressCascader",
+            "title": "Cascader 省市区级联选择器"
           },
           {
             "path": "/form",

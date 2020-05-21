@@ -4,7 +4,6 @@
     v-bind="$attrs"
     v-on="$listeners"
     :options="_initAddressData(grade)"
-    @change="handleCascaderChange"
   ></el-cascader>
 </template>
 
@@ -13,9 +12,9 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import area from './area.json'
 
 @Component({
-  name: 'ElmCascader'
+  name: 'elmAddressCascader'
 })
-export default class ElmCascader extends Vue {
+export default class ElmAddressCascader extends Vue {
   // 选择显示几级
   @Prop({ default: 3 }) private grade!: number
 
@@ -58,10 +57,6 @@ export default class ElmCascader extends Vue {
       })
     })
     return result
-  }
-
-  private handleCascaderChange (val: any) {
-    console.log(val)
   }
 }
 </script>

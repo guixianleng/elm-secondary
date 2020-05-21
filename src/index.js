@@ -3,16 +3,16 @@
  * @Description: 注册组件，按需加载
  * @Date: 2020-04-29 10:11:02
  * @LastEditors: LenGxin
- * @LastEditTime: 2020-05-18 10:15:36
+ * @LastEditTime: 2020-05-21 09:59:44
  */
-import ElmCascader from '../packages/ELmCascader/index.js'
+import ElmAddressCascader from '../packages/ElmAddressCascader/index.js'
 import ElmForm from '../packages/ElmForm/index.js'
 import ElmTable from '../packages/ElmTable/index.js'
 import ElmTreeSelect from '../packages/ElmTreeSelect/index.js'
 import ElmPagination from '../packages/ElmPagination/index.js'
 
 const components = [
-  ElmCascader,
+  ElmAddressCascader,
   ElmForm,
   ElmTable,
   ElmTreeSelect,
@@ -33,7 +33,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
   version: '0.1.1',
   install,
-  ElmCascader,
+  ElmAddressCascader,
   ElmForm,
   ElmTable,
   ElmTreeSelect,

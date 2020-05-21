@@ -5,7 +5,7 @@
 ### 基础用法
 :::demo
 ```html
-<elm-cascader v-model="area"></elm-cascader>
+<elm-address-cascader v-model="area"></elm-address-cascader>
 
 <script>
 export default {
@@ -22,7 +22,7 @@ export default {
 ### 显示省市
 :::demo
 ```html
-<elm-cascader v-model="proCity" :grade="2"></elm-cascader>
+<elm-address-cascader v-model="proCity" :grade="2"></elm-address-cascader>
 
 <script>
 export default {
@@ -39,7 +39,7 @@ export default {
 ### 仅显示最后一级
 :::demo
 ```html
-<elm-cascader v-model="last" :show-all-levels="false"></elm-cascader>
+<elm-address-cascader v-model="last" :show-all-levels="false"></elm-address-cascader>
 
 <script>
 export default {

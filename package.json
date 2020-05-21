@@ -11,9 +11,10 @@
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
+    "build:test": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "build-bundle": "vue-cli-service build --target lib --name elm-ui ./src/index.js"
+    "build-bundle": "vue-cli-service build --target lib --name elm-ui --dest lib ./src/index.js"
   },
   "dependencies": {
     "element-ui": "^2.13.1",

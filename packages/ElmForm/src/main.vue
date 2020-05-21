@@ -127,7 +127,7 @@ export default class ElmForm extends Vue {
   // 相关select列表
   @Prop({}) listTypeInfo!: any
   // 选择类型
-  private types = ['select', 'date', 'cascader', 'time', 'area']
+  private types = ['select', 'date', 'cascader', 'time']
 
   // 初始化 rules 校验
   get rulesObj() {
@@ -137,10 +137,8 @@ export default class ElmForm extends Vue {
       const SELECT_TYPE = this.types.includes(item.type)
       let newArr: Array<any> = [
         {
-          required: item.required,
-          message: `请${SELECT_TYPE ? '选择' : '输入'}${item.label}${
-            SELECT_TYPE ? '' : '名称'
-          }`,
+          required: item.required ? item.required : false,
+          message: `请${SELECT_TYPE ? '选择' : '输入'}${item.label}`,
           trigger: SELECT_TYPE ? 'change' : 'blur'
         }
       ]
@@ -176,13 +174,19 @@ export default class ElmForm extends Vue {
 
   // 得到 placeholder 显示
   private getPlaceholder(row: any) {
-    let placeholder
-    if (row.type === 'input' || row.type === 'textarea') {
-      placeholder = '请输入' + row.label
-    } else if (this.types.includes(row.type)) {
-      placeholder = '请选择' + row.label
+    let placeholder: string = ''
+    if (row.el && row.el.placeholder) {
+      placeholder = row.el.placeholder
     } else {
-      placeholder = row.label
+      switch (row.type) {
+        case 'input':
+        case 'textarea':
+          placeholder = '请输入' + row.label
+          break
+        default:
+          placeholder = '请选择' + row.label
+          break
+      }
     }
     return placeholder
   }
