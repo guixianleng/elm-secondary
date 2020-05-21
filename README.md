@@ -18,6 +18,7 @@ https://guixianleng.github.io/elm-secondary/
 import Vue from 'vue';
 import ElmUI from '@poly/elm-ui';
 import App from './App.vue';
+import '@poly/elm-ui/lib/elm-ui.css';
 
 Vue.use(ElmUI);
 
