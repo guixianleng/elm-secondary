@@ -103,7 +103,7 @@
 ### 表单插槽
 因内置的表单只支持（文本）输入框、选择器，不支持单选框、多选框、开关，可以使用插槽添加内容
 
-:::demo
+:::demo 使用`slot`插槽，`<template v-slot:form-type></template>`，其中`field-list`的定义`{ label: 'xx', type: 'slot', value: 'type'}`
 ```html
 <elm-form
   :ref-obj.sync="formData.ref"
