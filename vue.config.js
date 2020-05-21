@@ -1,4 +1,10 @@
+const CompressionPlugin = require('compression-webpack-plugin')
 const path = require('path')
+
+// 是否使用gzip
+const productionGzip = true
+// 需要gzip压缩的文件后缀
+const productionGzipExtensions = ['js', 'css']
 
 module.exports = {
   publicPath: './',
@@ -42,5 +48,13 @@ module.exports = {
       .use('vue-markdown-loader')
       .loader('vue-markdown-loader/lib/markdown-compiler')
       .loader(path.resolve(__dirname, './md-loader/index.js'))//element-ui的md处理在md-loader中,这里没有使用.处理方式在下面
+    if (process.env.NODE_ENV === 'production') {
+      // 启用GZip压缩
+      productionGzip && new CompressionPlugin({
+        test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
+        threshold: 8192,
+        minRatio: 0.8
+      })
+    }
   }
 }
